@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import * as firebase from 'firebase'
 import CharityInfo from '../components/CharityInfo'
 import IntentSection from '../components/IntentSection'
-import Carousel from 'nuka-carousel';
+import { Carousel } from 'react-responsive-carousel';
+import styles from 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 class CharityPage extends Component {
   constructor(props){
@@ -20,7 +21,11 @@ class CharityPage extends Component {
   }
 
   render() {
-    console.log(this.state.charity_info)
+    var settings = {
+      dots: true,
+      infinite: true,
+      speed: 200,
+    };
     return (
 
 
@@ -28,8 +33,9 @@ class CharityPage extends Component {
 
         <div>
 
-          <CharityInfo profile_image={this.state.charity_info.profile_picture}/>
-          <IntentSection intents={this.state.charity_info.intents}/>
+          <CharityInfo charity={this.state.charity_info}/>
+        <img src={this.state.charity_info.big_pic} style={{flex:1, alignSelf: 'stretch', width:'100%', height: null}}/>
+        <IntentSection intents={this.state.charity_info.intents} total_contributors={this.state.charity_info.total_contributors}/>
         </div>
 
     );
