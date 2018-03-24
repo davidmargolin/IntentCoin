@@ -1,28 +1,58 @@
-.App {
-  text-align: center;
+.Nav-Bar{
+  width: 100%;
+  height: 100px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-shadow: 1px 1px 4px #9e9e9e;
+  position: fixed;
+  justify-content: space-between;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.Logo{
+  border-radius: 50%;
+  margin: 25px;
+  width: 50px;
+  height: 50px;
+  border-color: black;
+  border-radius: 5px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.Name{
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 30px;
+  color: black;
+  flex: 2;
 }
 
-.App-title {
-  font-size: 1.5em;
+.search-bar{
+  width: 350px;
+  height: 45px;
+  border-style: none;
+  outline: none;
+  border-bottom: 1px solid black;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.App-intro {
-  font-size: large;
+.project-button{
+  justify-content: 'flex-end';
+  list-style-type: none;
+  color: #6a6fea;
+  font-size: 30px;
+  font-weight: bolder;
+  margin-right: 10px;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.project-button a{
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.project-button a:hover{
+
 }
