@@ -10,6 +10,11 @@ export default class IntentSection extends Component {
     this.state={
       modalIsOpen:false
     }
+    this.title=""
+    this.amount=""
+    this.issue_to=""
+    this.goal=""
+    this.description=""
   }
 
   openModal=()=> {
@@ -18,6 +23,18 @@ export default class IntentSection extends Component {
 
   closeModal=()=> {
     this.setState({modalIsOpen: false});
+  }
+
+  handleSubmit=()=>{
+    let form_data={
+      title: this.title,
+      amount: this.amount,
+      issue_to: this.issue_to,
+      goal: this.goal,
+      description: this.description
+    }
+    console.log(form_data)
+    this.closeModal()
   }
 
   render() {
@@ -35,16 +52,18 @@ export default class IntentSection extends Component {
         <div style={{padding: 20, display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
         <div style={{display:'flex', flexDirection:'column', justifyContent: 'center'}}>
           <label style={{padding: 8, color: '#6A6FEA', fontWeight: 'bold', fontSize: 18}} >Title</label>
-          <input style={{border: 0, backgroundColor: '#e3e3e3',margin: 8, padding: 20}}type="text" />
+        <input style={{border: 0, backgroundColor: '#e3e3e3',margin: 8, padding: 20}}type="text" onChange={(e)=>{this.title=e.target.value}}/>
           <label style={{color: '#6A6FEA', fontWeight: 'bold', padding: 8}} >Amount</label>
-          <input style={{border: 0, backgroundColor: '#e3e3e3',margin: 8, padding: 20}}type="text" />
+        <input style={{border: 0, backgroundColor: '#e3e3e3',margin: 8, padding: 20}}type="text" onChange={(e)=>{this.amount=e.target.value}}/>
           <label style={{color: '#6A6FEA', fontWeight: 'bold', padding: 8}} >Issue To</label>
-          <input style={{border: 0, backgroundColor: '#e3e3e3',margin: 8, padding: 20}}type="text" />
+        <input style={{border: 0, backgroundColor: '#e3e3e3',margin: 8, padding: 20}}type="text" onChange={(e)=>{this.issue_to=e.target.value}}/>
           <label style={{color: '#6A6FEA', fontWeight: 'bold', padding: 8}} >Goal</label>
-        <input style={{border: 0, backgroundColor: '#e3e3e3',margin: 8, padding: 20}}type="text" />
+        <input style={{border: 0, backgroundColor: '#e3e3e3',margin: 8, padding: 20}}type="text" onChange={(e)=>{this.goal=e.target.value}}/>
           <label style={{color: '#6A6FEA', fontWeight: 'bold', padding: 8}} >Description</label>
-          <input style={{border: 0, backgroundColor: '#e3e3e3',margin: 8, padding: 20}}type="text" />
-          <button >Submit</button>
+        <input style={{border: 0, backgroundColor: '#e3e3e3',margin: 8, padding: 20}}type="text" onChange={(e)=>{this.description=e.target.value}}/>
+      <button onClick={this.handleSubmit} >Submit</button>
+      <button onClick={this.closeModal} >Cancel</button>
+
         </div>
       </div>
       </Modal>
