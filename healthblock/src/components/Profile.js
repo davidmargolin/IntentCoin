@@ -13,7 +13,7 @@ export default class Profile extends Component {
         </div>
       </div>
       </div>
-      <h2 style={{margin: 20, color: '#6A6FEA'}}>Your Projects</h2>
+      <h3 style={{margin: 20}}>Your Projects</h3>
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
         <Card/>
         <Card/>
