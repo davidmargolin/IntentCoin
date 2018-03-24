@@ -72,17 +72,17 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ "/Users/jeanecarlos/Desktop/Projects/kickstart/node_modules/next/dist/pages/_error.js":
+/***/ "/Users/jeanecarlos/Desktop/Projects/hacknyu/kickclone/node_modules/next/dist/pages/_error.js":
 /***/ (function(module, exports) {
 
-module.exports = require("/Users/jeanecarlos/Desktop/Projects/kickstart/node_modules/next/dist/pages/_error.js");
+module.exports = require("/Users/jeanecarlos/Desktop/Projects/hacknyu/kickclone/node_modules/next/dist/pages/_error.js");
 
 /***/ }),
 
 /***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("/Users/jeanecarlos/Desktop/Projects/kickstart/node_modules/next/dist/pages/_error.js");
+module.exports = __webpack_require__("/Users/jeanecarlos/Desktop/Projects/hacknyu/kickclone/node_modules/next/dist/pages/_error.js");
 
 
 /***/ })
