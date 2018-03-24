@@ -41,7 +41,7 @@ export default class IntentSection extends Component {
     return (
       <div style={{flexDirection: 'row', display: 'flex', flexWrap: 'wrap', margin: 40}}>
         {this.props.intents.map((intent)=><Intent intent={intent} total_contributors={this.props.total_contributors}/>)}
-        <button onClick={this.openModal}style={{flexDirection:'column',textAlign: 'center',justifyContent: 'center',alignItems: 'center', display: 'flex', boxShadow: "1px 1px 4px #cEcEcE", width: 400,height: 310, margin: 20}}>
+        <button onClick={this.openModal}style={{flexDirection:'column',textAlign: 'center',justifyContent: 'center',alignItems: 'center', display: 'flex', boxShadow: "1px 1px 4px #cEcEcE", width: 400,height: 330, margin: 20}}>
         <img src={add} style={{padding: 20, width: 65, height: 65}}/>
         Add New Intent
       </button>
