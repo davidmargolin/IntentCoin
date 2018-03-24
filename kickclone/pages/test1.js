@@ -68,10 +68,24 @@ class HomePage extends Component {
 	}
 	render() {
 		return (
-			<div>
+			<div
+				style={{
+					display: 'flex',
+					flex: 1,
+					flexDirection: 'column',
+					width: '100%'
+				}}
+			>
 				<NavBar />
 
-				<div style={{ display: 'flex', flexDirection: 'row', width: '100%' }}>
+				<div
+					style={{
+						display: 'flex',
+						flexDirection: 'row',
+						width: '100%',
+						flex: 7
+					}}
+				>
 					<Profile />
 					<ExploreList
 						education={this.state.edu}

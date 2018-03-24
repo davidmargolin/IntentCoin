@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './App.css';
 import { Link } from 'react-router-dom';
 import styled, { injectGlobal } from 'styled-components';
 
@@ -68,28 +69,38 @@ const ProjectButtonLink = styled.div`
 	text-decoration: none;
 `;
 
+const Container = styled.div`
+	background-color: red;
+	flex: 1;
+	height: 100;
+	background-color: red;
+`;
+
 export default class NavBar extends Component {
 	render() {
 		return (
-			<NavBar1>
-				<NavLeft>
-					{/* <Link to="/"> */}
-					<Logo
-						className="Logo"
-						src="https://i.pinimg.com/originals/3c/eb/9a/3ceb9ae6a1040db7fe5b5f35fcd05aac.jpg"
-					/>{' '}
-					{/* </Link> */}
-					{/* <Link to="/"> */}
-					<MainHeader className="Name">CharityBlock</MainHeader>
-					{/* </Link> */}
-					<Input type="text" placeholder="Search Charities..." />
-				</NavLeft>
-				<ProjectButton>
-					<button>
-						<ProjectButtonLink href="">Make a project</ProjectButtonLink>
-					</button>
-				</ProjectButton>
-			</NavBar1>
+			<Container
+				styled={{ backgroundColor: 'red', height: 100, width: '100%' }}
+			/>
+			// <NavBar1>
+			// 	<NavLeft>
+			// 		{/* <Link to="/"> */}
+			// 		<Logo
+			// 			className="Logo"
+			// 			src="https://i.pinimg.com/originals/3c/eb/9a/3ceb9ae6a1040db7fe5b5f35fcd05aac.jpg"
+			// 		/>{' '}
+			// 		{/* </Link> */}
+			// 		{/* <Link to="/"> */}
+			// 		<MainHeader className="Name">CharityBlock</MainHeader>
+			// 		{/* </Link> */}
+			// 		<Input type="text" placeholder="Search Charities..." />
+			// 	</NavLeft>
+			// 	<ProjectButton>
+			// 		<button>
+			// 			<ProjectButtonLink href="">Make a project</ProjectButtonLink>
+			// 		</button>
+			// 	</ProjectButton>
+			// </NavBar1>
 		);
 	}
 }
