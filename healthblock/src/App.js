@@ -23,18 +23,19 @@ class App extends Component {
       messagingSenderId: "97936250813"
     };
     firebase.initializeApp(config);
+
   }
   render() {
     return (
       <BrowserRouter>
         <div>
         <div>
-          <NavBar/>
+          <NavBar />
         </div>
         <div>
           <Route exact path="/" component={HomePage}/>
-        <Route path="/:category/:index/:name" component={CharityPage}/>
-    </div>
+          <Route path="/:category/:index/:name" component={CharityPage}/>
+        </div>
       </div>
       </BrowserRouter>
     );

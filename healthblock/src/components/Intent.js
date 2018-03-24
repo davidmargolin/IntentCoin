@@ -17,7 +17,7 @@ export default class Intent extends Component {
           <Line style={{margin: 16, marginLeft: 10, maxWidth: 368}}percent={(this.props.intent.approvals/this.props.total_contributors)*100} strokeWidth="3" />
           <text style={{marginRight: 32, fontSize: 14, textAlign: 'right'}}> {((this.props.intent.approvals/this.props.total_contributors)*100).toFixed(0)}% Approval</text>
         </div>
-        <button style={{width: '100%', float: 'right', marginTop: 10, padding: 10, color: approved? 'green': 'red'}} disabled={!approved}> Retrieve Funds</button>
+        <button style={{width: '100%', float: 'right', marginTop: 10, padding: 10, color: approved? 'green': 'gray'}} disabled={!approved}> Retrieve Funds</button>
       </div>
     );
   }

@@ -6,13 +6,12 @@ export default class NavBar extends Component{
   render() {
     return (
     <div style={{width: '100%', backgroundColor: 'white', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', boxShadow: '1px 1px 1px #cEcEcE'}}>
-      <div style={{backgroundColor: 'white', display:'flex', flexDirection: 'row', alignItems: 'center'}} >
-        <Link to="/"style={{textDecoration: 'none', color: 'black', display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-        <img style={{position:'relative',borderRadius: '50%', margin: 20, width: 80, height:80, borderRadius: 5}} src = {money}/>
-      <h2 style={{width: 340, marginLeft: 20}}>CharityBlock</h2></Link>
-        <input type="text" placeholder="Search Charities..." style={{height: 30,width: 400,borderradius: 0,fontSize: 18,padding: 8,}}/>
+      <div style={{backgroundColor: 'white', display:'flex', flexDirection: 'row', alignItems: 'center', flex:1}} >
+        <Link to="/"style={{textDecoration: 'none', color: 'black', display: 'flex', flexDirection: 'row'}}>
+      <h2 style={{flex:1, margin: 20, color: '#6A6FEA'}}>CharityBlock</h2></Link>
+    <input type="text" placeholder="Search Causes..." style={{height: 30,flex:1,borderradius: 0,maxWidth: 800, fontSize: 15,padding: 8,margin: 20}}/>
       </div>
-        <button style={{padding: 8, margin: 16, color: '#6A6FEA'}} href = "/">Make a project</button>
+        <button style={{width: 150,padding: 6, marginRight: 24, color: '#6A6FEA', fontSize: '12'}} href = "/">List Your Cause</button>
     </div>
 )
 }

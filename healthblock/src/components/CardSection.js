@@ -8,9 +8,10 @@ export default class CardSection extends Component {
         <h2 style={{marginLeft: 30}}> {this.props.title}</h2>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
           {this.props.image_list.map((item,index)=><Link to={"/"+this.props.title+"/"+index+"/"+item['name']}><Card image={item['profile_picture']}/></Link>)}
-        <div style={{flexDirection: 'column',textAlign: 'center',width: 270, height: 195, justifyContent: 'center', display: 'flex'}}>
-            <t style={{color: '#6A6FEA'}}>See More</t>
-        </div>
+          <div style={{width: 220, backgroundColor: 'white', height: 165,boxShadow: "1px 1px 4px #cEcEcE", borderRadius: 6, margin: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20}}>
+            <text style={{color: '#6A6FEA', fontSize: 16, fontWeight: 'bold'}}>See More</text>
+          </div>
+
       </div>
     </div>
     );

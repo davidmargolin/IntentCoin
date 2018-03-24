@@ -13,8 +13,9 @@ export default class Profile extends Component {
         </div>
       </div>
       </div>
-      <h3 style={{margin: 20}}>Your Projects</h3>
+      <h3 style={{margin: 20, paddingTop:20}}>Your Contributions</h3>
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <Card/>
         <Card/>
         <Card/>
         <Card/>

@@ -9,7 +9,7 @@ class CharityPage extends Component {
   constructor(props){
     super(props)
     this.state={
-      charity_info: {intents:[]}
+      charity_info: {intents:[]},
     }
   }
 
@@ -19,6 +19,8 @@ class CharityPage extends Component {
       this.setState({charity_info: data.val()})
     });
   }
+
+
 
   render() {
     var settings = {

@@ -21,7 +21,7 @@ class HomePage extends Component {
       });
     });
     let edu_list = []
-    firebase.database().ref('Education').once('value', (snapshot)=> {
+    firebase.database().ref('Policy').once('value', (snapshot)=> {
       snapshot.forEach((childSnapshot)=> {
         let childData = childSnapshot.val();
         edu_list.push(childData)
@@ -45,7 +45,7 @@ class HomePage extends Component {
         <div style={{display: 'flex', flexDirection: 'row', width: '100%'}}>
           <Profile />
 
-        <ExploreList education={this.state.edu} environment={this.state.env} health={this.state.health} style={{margin: 'auto', display:'flex'}}/>
+          <ExploreList education={this.state.edu} environment={this.state.env} health={this.state.health} style={{margin: 'auto', display:'flex'}}/>
 
         </div>
 
