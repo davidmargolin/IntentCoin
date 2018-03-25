@@ -29,7 +29,8 @@ class RequestDetailScreen extends Component {
 			goal_desc: '',
 			goal_name: '',
 			issued_to: '',
-			status: 0
+			status: 0,
+			approvals: 0
 		};
 	}
 	componentWillMount() {
@@ -40,19 +41,22 @@ class RequestDetailScreen extends Component {
 			ref = database.ref(`Environment/3/intents/${requestIndex}`);
 		} else if (contractKey == 'contract3') {
 			ref = database.ref(`Policy/0/intents/${requestIndex}`);
+		} else {
+			ref = database.ref(`Health/1/intents/${requestsIndex}`);
 		}
 
 		console.log('breakkkkk');
 		ref.on('value', snapshot => {
 			let data = snapshot.val();
 			let status = data.contributors[userIndex - 1];
-			let { amount_dollars, goal_desc, goal_name, issued_to } = data;
+			let { amount_dollars, goal_desc, goal_name, issued_to, approvals } = data;
 			this.setState({
 				status,
 				amount_dollars,
 				goal_desc,
 				goal_name,
-				issued_to
+				issued_to,
+				approvals
 			});
 		});
 	}
@@ -70,8 +74,24 @@ class RequestDetailScreen extends Component {
 	};
 
 	accept = () => {
-		var newEventRef = database.ref('events').push();
+		if (this.state.status == 2) {
+			return 0;
+		}
+		let { userIndex, contractKey, requestIndex } = this.props;
+		let realIndex = userIndex - 1;
 
+		let ref;
+		if (contractKey == 'contract1') {
+			ref = database.ref(`Environment/3/intents/${requestIndex}/approvals`);
+		} else if (contractKey == 'contract3') {
+			ref = database.ref(`Policy/0/intents/${requestIndex}/approvals`);
+		} else {
+			ref = database.ref(`Health/1/intents/${requestsIndex}/approvals`);
+		}
+		//
+		ref.set(this.state.approvals + 1);
+
+		var newEventRef = database.ref('events').push();
 		newEventRef.set({
 			type: 'APPROVE',
 			user: this.props.userKey,
@@ -79,7 +99,6 @@ class RequestDetailScreen extends Component {
 			contract: contracts[this.props.contractKey]
 		});
 
-		//we still gotta go back
 		this.goBack();
 	};
 	selectedCard = () => {

@@ -38,10 +38,12 @@ class RequestScreen extends Component {
 		};
 
 		let ref;
-		if (this.props.contract == 'irc') {
+		if (this.props.contract == 'contract1') {
 			ref = database.ref('Environment/3/intents');
-		} else {
+		} else if (this.props.contract == 'contract2') {
 			ref = database.ref('Policy/0/intents');
+		} else {
+			ref = database.ref('Health/1/intents');
 		}
 
 		ref.on('value', snapshot => {
@@ -186,7 +188,7 @@ const styles = {
 const mapStateToProps = ({ main }) => {
 	let { contractKey, userIndex } = main;
 	return {
-		contract: contractKey == 'contract3' ? 'bernie' : 'irc',
+		contract: contractKey,
 		index: userIndex
 	};
 };

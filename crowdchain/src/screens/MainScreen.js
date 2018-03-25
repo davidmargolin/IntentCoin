@@ -113,7 +113,7 @@ class MainScreen extends Component {
 	}
 
 	onPress = async (key, index) => {
-		if (index == 3 || index == 4 || index == 1) {
+		if (index == 3 || index == 4) {
 			return 0;
 		} else {
 			console.log(index);
