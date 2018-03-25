@@ -14,9 +14,9 @@ import { database } from '../firebase/firebase';
 const { HEIGHT, WIDTH } = Dimensions.get('window');
 
 const contracts = {
-	contract1: '0xa223e2545085ded0f0aca73ccb6571c851b2bc65',
-	contract2: '0xba317fdc4417317529c30ab29104ab2783e12476',
-	contract3: '0x0a2d48e7adb7abe9238ce2527b678997e814b7e4'
+	contract1: '0x1b6007f93a4c1af2f82df7f05f46779062d97007',
+	contract2: '0x1d823259964e4d4fdba1e079314ff6084399b39a',
+	contract3: '0x14ce806d6749237a09117f56dc038e452d1c3eff'
 };
 
 class RequestDetailScreen extends Component {
@@ -42,7 +42,7 @@ class RequestDetailScreen extends Component {
 		} else if (contractKey == 'contract3') {
 			ref = database.ref(`Policy/0/intents/${requestIndex}`);
 		} else {
-			ref = database.ref(`Health/1/intents/${requestsIndex}`);
+			ref = database.ref(`Health/1/intents/${requestIndex}`);
 		}
 
 		console.log('breakkkkk');
@@ -86,7 +86,7 @@ class RequestDetailScreen extends Component {
 		} else if (contractKey == 'contract3') {
 			ref = database.ref(`Policy/0/intents/${requestIndex}/approvals`);
 		} else {
-			ref = database.ref(`Health/1/intents/${requestsIndex}/approvals`);
+			ref = database.ref(`Health/1/intents/${requestIndex}/approvals`);
 		}
 		//
 		ref.set(this.state.approvals + 1);
@@ -102,7 +102,7 @@ class RequestDetailScreen extends Component {
 			);
 		} else {
 			ref2 = database.ref(
-				`Health/1/intents/${requestsIndex}/contributors/${realIndex}`
+				`Health/1/intents/${requestIndex}/contributors/${realIndex}`
 			);
 		}
 		//
@@ -138,7 +138,7 @@ class RequestDetailScreen extends Component {
 			);
 		} else {
 			ref2 = database.ref(
-				`Health/1/intents/${requestsIndex}/contributors/${realIndex}`
+				`Health/1/intents/${requestIndex}/contributors/${realIndex}`
 			);
 		}
 		//

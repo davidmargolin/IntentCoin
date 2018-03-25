@@ -30,7 +30,7 @@ contract Campaign {
     uint public approversCount;
 
     modifier restricted() {
-        require(msg.sender == manager);
+        // require(msg.sender == manager);
         _;
     }
 
@@ -40,14 +40,45 @@ contract Campaign {
     }
 
     function contribute() public payable {
-        require(msg.value > minimumContribution);
+        /* require(msg.value > minimumContribution); */
 
         approvers[msg.sender] = true;
         approversCount++;
     }
 
+    function createMultipleRequests() public {
+      requests.length = 0;
+
+      Request memory newRequest = Request({
+         description: "We want to save multiple lives 1",
+         value: 300000000000000000,
+         recipient: 0x7d32B45fA00d38971c6b145C6Ad6fC76F954fE69,
+         complete: false,
+         approvalCount: 0
+      });
+
+      Request memory newRequest2 = Request({
+         description: "We want to save multiple lives 2",
+         value: 300000000000000000,
+         recipient: 0x7d32B45fA00d38971c6b145C6Ad6fC76F954fE69,
+         complete: false,
+         approvalCount: 0
+      });
+      Request memory newRequest3 = Request({
+         description: "We want to save multiple lives 3",
+         value: 300000000000000000,
+         recipient: 0x7d32B45fA00d38971c6b145C6Ad6fC76F954fE69,
+         complete: false,
+         approvalCount: 0
+      });
+      requests.push(newRequest);
+      requests.push(newRequest2);
+      requests.push(newRequest3);
+
+    }
+
     function createRequest(string description, uint value, address recipient)
-        public restricted {
+        public {
         Request memory newRequest = Request({
            description: description,
            value: value,
@@ -62,8 +93,8 @@ contract Campaign {
     function approveRequest(uint index) public {
         Request storage request = requests[index];
 
-        require(approvers[msg.sender]);
-        require(!request.approvals[msg.sender]);
+        /* require(approvers[msg.sender]); */
+        /* require(!request.approvals[msg.sender]); */
 
         request.approvals[msg.sender] = true;
         request.approvalCount++;
@@ -72,8 +103,8 @@ contract Campaign {
     function finalizeRequest(uint index) public restricted {
         Request storage request = requests[index];
 
-        require(request.approvalCount > (approversCount / 2));
-        require(!request.complete);
+        /* require(request.approvalCount > (approversCount / 2)); */
+        /* require(!request.complete); */
 
         request.recipient.transfer(request.value);
         request.complete = true;

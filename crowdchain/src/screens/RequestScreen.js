@@ -65,6 +65,19 @@ class RequestScreen extends Component {
 		});
 	}
 
+	async componentWillUnmount() {
+		let ref;
+		if (this.props.contract == 'contract1') {
+			ref = database.ref('Environment/3/intents');
+		} else if (this.props.contract == 'contract3') {
+			ref = database.ref('Policy/0/intents');
+		} else {
+			ref = database.ref('Health/1/intents');
+		}
+
+		ref.off();
+	}
+
 	_renderItem({ item, index }) {
 		return (
 			<View style={styles.slide}>
@@ -139,6 +152,8 @@ const styles = {
 		height: 200,
 		width: 290,
 		marginBottom: 20,
+		paddingLeft: 10,
+		paddingRight: 10,
 		marginTop: 20
 	},
 	itemBody: {
