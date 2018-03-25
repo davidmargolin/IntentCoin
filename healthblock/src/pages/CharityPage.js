@@ -36,7 +36,7 @@ class CharityPage extends Component {
         <div>
           <CharityInfo charity={this.state.charity_info}/>
           <img src={this.state.charity_info.big_pic} style={{flex:1, alignSelf: 'stretch', width:'100%', height: null}}/>
-          <IntentSection intents={this.state.charity_info.intents} total_contributors={this.state.charity_info.total_contributors}/>
+        <IntentSection intents={this.state.charity_info.intents} reference={this.props.match.params.category+"/"+this.props.match.params.index} total_contributors={this.state.charity_info.total_contributors}/>
         </div>
 
     );

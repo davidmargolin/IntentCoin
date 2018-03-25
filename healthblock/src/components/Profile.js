@@ -15,11 +15,9 @@ export default class Profile extends Component {
       </div>
       <h3 style={{margin: 20, paddingTop:20}}>Your Contributions</h3>
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
+        <Card image="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Bernie_Sanders_2016_logo.svg/2000px-Bernie_Sanders_2016_logo.svg.png"/>
+        <Card image="https://pctechmag.com/wp-content/uploads/2016/03/Logo-International_Rescue_Committee.jpg"/>
+      <Card image="http://www.1470wmbd.com/wp-content/uploads/2018/02/st.-jude-logo.jpg"/>
       </div>
       </div>
     );
