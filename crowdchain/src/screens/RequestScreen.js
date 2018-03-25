@@ -40,7 +40,7 @@ class RequestScreen extends Component {
 		let ref;
 		if (this.props.contract == 'contract1') {
 			ref = database.ref('Environment/3/intents');
-		} else if (this.props.contract == 'contract2') {
+		} else if (this.props.contract == 'contract3') {
 			ref = database.ref('Policy/0/intents');
 		} else {
 			ref = database.ref('Health/1/intents');
@@ -71,15 +71,6 @@ class RequestScreen extends Component {
 				<Text style={styles.title}>{item.title}</Text>
 			</View>
 		);
-	}
-
-	componentWillReceiveProps(newProps) {
-		let { main } = newProps['from-redux'];
-
-		this.setState({
-			message: main.message,
-			val: main.val
-		});
 	}
 
 	goBack = () => {

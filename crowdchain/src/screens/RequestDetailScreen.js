@@ -46,7 +46,7 @@ class RequestDetailScreen extends Component {
 		}
 
 		console.log('breakkkkk');
-		ref.on('value', snapshot => {
+		ref.once('value', snapshot => {
 			let data = snapshot.val();
 			let status = data.contributors[userIndex - 1];
 			let { amount_dollars, goal_desc, goal_name, issued_to, approvals } = data;
@@ -91,6 +91,23 @@ class RequestDetailScreen extends Component {
 		//
 		ref.set(this.state.approvals + 1);
 
+		let ref2;
+		if (contractKey == 'contract1') {
+			ref2 = database.ref(
+				`Environment/3/intents/${requestIndex}/contributors/${realIndex}`
+			);
+		} else if (contractKey == 'contract3') {
+			ref2 = database.ref(
+				`Policy/0/intents/${requestIndex}/contributors/${realIndex}`
+			);
+		} else {
+			ref2 = database.ref(
+				`Health/1/intents/${requestsIndex}/contributors/${realIndex}`
+			);
+		}
+		//
+		ref2.set(2);
+
 		var newEventRef = database.ref('events').push();
 		newEventRef.set({
 			type: 'APPROVE',
@@ -98,6 +115,34 @@ class RequestDetailScreen extends Component {
 			requestId: this.props.requestIndex,
 			contract: contracts[this.props.contractKey]
 		});
+
+		this.goBack();
+	};
+
+	decline = async () => {
+		if (this.state.status == 1) {
+			return 0;
+		}
+
+		let { userIndex, contractKey, requestIndex } = this.props;
+		let realIndex = userIndex - 1;
+
+		let ref2;
+		if (contractKey == 'contract1') {
+			ref2 = database.ref(
+				`Environment/3/intents/${requestIndex}/contributors/${realIndex}`
+			);
+		} else if (contractKey == 'contract3') {
+			ref2 = database.ref(
+				`Policy/0/intents/${requestIndex}/contributors/${realIndex}`
+			);
+		} else {
+			ref2 = database.ref(
+				`Health/1/intents/${requestsIndex}/contributors/${realIndex}`
+			);
+		}
+		//
+		ref2.set(1);
 
 		this.goBack();
 	};
@@ -134,7 +179,7 @@ class RequestDetailScreen extends Component {
 				</View>
 				<View style={styles.bottom}>
 					<TouchableOpacity
-						onPress={this.goBack}
+						onPress={this.decline}
 						style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
 					>
 						<Text style={styles.bottomText}>Decline</Text>

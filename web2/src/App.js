@@ -65,10 +65,6 @@ class App extends Component {
 			if (this.state.started) {
 				if (type === 'APPROVE') {
 					this.approveRequest(campaign, data);
-				} else if (type === 'FINALIZING') {
-					this.finalizeRequest(data);
-				} else if (type === 'CREATING') {
-					this.createRequest(data);
 				}
 			}
 		});
@@ -104,10 +100,12 @@ class App extends Component {
 	//We need the request id number and the person who is approving it
 	approveRequest = async (campaign, data) => {
 		let { requestId, user } = data;
-		console.log('WE ARE ABOUT TO APPROVE REQUEST WITH DATA', data);
-		await campaign.methods.approveRequest(requestId).send({
-			from: user
-		});
+		if (user == accounts[1]) {
+			console.log('WE ARE ABOUT TO APPROVE REQUEST WITH DATA', data);
+			await campaign.methods.approveRequest(requestId).send({
+				from: user
+			});
+		}
 	};
 
 	switch = () => {
