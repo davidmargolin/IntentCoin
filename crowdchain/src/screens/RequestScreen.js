@@ -49,10 +49,12 @@ class RequestScreen extends Component {
 			let userIndex = this.props.index - 1;
 			let requestList = [];
 
-			data.map(request => {
+			data.map((request, index) => {
+				console.log(request);
 				let title = request.goal_name;
 				let description = request.goal_desc;
 				let status = request.contributors[userIndex];
+				let issuedTo = request.issued_to;
 				console.log('request info', title, description);
 				let requestObject = { title, description, status };
 				requestList.push(requestObject);

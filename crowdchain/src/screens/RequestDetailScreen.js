@@ -13,17 +13,48 @@ import { database } from '../firebase/firebase';
 
 const { HEIGHT, WIDTH } = Dimensions.get('window');
 
+const contracts = {
+	contract1: '0xa223e2545085ded0f0aca73ccb6571c851b2bc65',
+	contract2: '0xba317fdc4417317529c30ab29104ab2783e12476',
+	contract3: '0x0a2d48e7adb7abe9238ce2527b678997e814b7e4'
+};
+
 class RequestDetailScreen extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			intent: 'Buy Batteries',
-			amount: '$1000',
-			issued: 'Staples',
-			description:
-				'We need to buy batteries to continue on with Destroyer A. We will use the batteries to power up the engine rockets of Destroyer A'
+			status: '',
+			amount_dollars: '',
+			goal_desc: '',
+			goal_name: '',
+			issued_to: '',
+			status: 0
 		};
+	}
+	componentWillMount() {
+		let { contractKey, userKey, requestIndex, userIndex } = this.props;
+		console.log('hello detail', contractKey);
+		let ref;
+		if (contractKey == 'contract1') {
+			ref = database.ref(`Environment/3/intents/${requestIndex}`);
+		} else if (contractKey == 'contract3') {
+			ref = database.ref(`Policy/0/intents/${requestIndex}`);
+		}
+
+		console.log('breakkkkk');
+		ref.on('value', snapshot => {
+			let data = snapshot.val();
+			let status = data.contributors[userIndex - 1];
+			let { amount_dollars, goal_desc, goal_name, issued_to } = data;
+			this.setState({
+				status,
+				amount_dollars,
+				goal_desc,
+				goal_name,
+				issued_to
+			});
+		});
 	}
 
 	_renderItem({ item, index }) {
@@ -32,17 +63,6 @@ class RequestDetailScreen extends Component {
 				<Text style={styles.title}>{item.title}</Text>
 			</View>
 		);
-	}
-
-	componentWillReceiveProps(newProps) {
-		console.log('We recieved the new props', newProps);
-
-		let { main } = newProps['from-redux'];
-
-		this.setState({
-			message: main.message,
-			val: main.val
-		});
 	}
 
 	goBack = () => {
@@ -54,8 +74,9 @@ class RequestDetailScreen extends Component {
 
 		newEventRef.set({
 			type: 'APPROVE',
-			user: 'userKey',
-			requestId: 3
+			user: this.props.userKey,
+			requestId: this.props.requestIndex,
+			contract: contracts[this.props.contractKey]
 		});
 
 		//we still gotta go back
@@ -66,6 +87,13 @@ class RequestDetailScreen extends Component {
 	};
 
 	render() {
+		let { status } = this.state;
+
+		let color = status == 0 ? '#6A6FEA' : '#E65454';
+		if (status == 2) {
+			color = '#25A33D';
+		}
+		console.log(this.props);
 		return (
 			<View style={styles.container}>
 				<View style={styles.top}>
@@ -74,15 +102,15 @@ class RequestDetailScreen extends Component {
 					</TouchableOpacity>
 				</View>
 				<View style={styles.content}>
-					<View style={styles.card}>
+					<View style={[styles.card, { backgroundColor: color }]}>
 						<Text style={styles.cardHeader}>Intent</Text>
-						<Text style={styles.cardBody}>{this.state.intent}</Text>
+						<Text style={styles.cardBody}>{this.state.goal_name}</Text>
 						<Text style={styles.cardHeader}>Description</Text>
-						<Text style={styles.cardBody}>{this.state.description}</Text>
+						<Text style={styles.cardBody}>{this.state.goal_desc}</Text>
 						<Text style={styles.cardHeader}>Amount</Text>
-						<Text style={styles.cardBody}>{this.state.amount}</Text>
+						<Text style={styles.cardBody}>{this.state.amount_dollars}</Text>
 						<Text style={styles.cardHeader}>Issued</Text>
-						<Text style={styles.cardBody}>{this.state.issued}</Text>
+						<Text style={styles.cardBody}>{this.state.issued_to}</Text>
 					</View>
 				</View>
 				<View style={styles.bottom}>
@@ -204,11 +232,9 @@ const styles = {
 	}
 };
 
-const mapStateToProps = (state, ownProps) => {
-	console.log('Request Detail State', state);
-	return {
-		'from-redux': state
-	};
+const mapStateToProps = ({ main }) => {
+	let { contractKey, requestIndex, userIndex, userKey } = main;
+	return { contractKey, requestIndex, userIndex, userKey };
 };
 
 export default connect(mapStateToProps)(RequestDetailScreen);

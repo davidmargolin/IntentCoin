@@ -7,6 +7,7 @@ const provider = new HDWalletProvider(
 	'lens exercise bone ask health all lecture impose senior actual stone major',
 	'https://rinkeby.infura.io/vA3ydrt3H4EbCydVMFRg'
 );
+let masterAccount = '0xb9A1b152D057d66719609cBAE415cf1DB8bec63D';
 
 const web3 = new Web3(provider);
 
@@ -19,9 +20,9 @@ const deploy = async () => {
 		JSON.parse(compiledFactory.interface)
 	)
 		.deploy({ data: compiledFactory.bytecode })
-		.send({ gas: '1000000', from: accounts[0] });
+		.send({ gas: '1000000', from: masterAccount });
 
-	console.log('Contract deployed to', result.options.address);
+	console.log('Contract deployed tosgsgsg', result.options.address);
 };
 
 deploy();
