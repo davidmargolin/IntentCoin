@@ -67,6 +67,7 @@ class App extends Component {
 					this.approveRequest(campaign, data);
 				} else if (type === 'FINALIZE') {
 					this.finalizeRequest(data);
+					// this.finalizeRequest(data);
 				}
 			}
 		});
@@ -116,6 +117,10 @@ class App extends Component {
 	//We need the request id number and the person who is approving it
 	approveRequest = async (campaign, data) => {
 		let { requestId, user } = data;
+
+		//accounts[0] == David/Derran
+		//accounts[1] == John
+		//accounts[2] == Srinvas
 		if (user == accounts[1]) {
 			console.log('WE ARE ABOUT TO APPROVE REQUEST WITH DATA', data);
 			await campaign.methods.approveRequest(requestId).send({
